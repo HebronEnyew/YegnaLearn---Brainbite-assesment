@@ -1,5 +1,15 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+
+
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
-  devtools: { enabled: true }
+  modules: ['@nuxtjs/supabase'],
+  runtimeConfig: {
+    public: {
+      SUPABASE_URL: process.env.SUPABASE_URL,
+      SUPABASE_KEY: process.env.SUPABASE_KEY
+    }
+  },
+  css: ['~/assets/css/main.css'],
+  devtools: { enabled: true },
 })
+
+
