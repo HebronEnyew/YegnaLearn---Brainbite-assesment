@@ -1,75 +1,90 @@
-# Nuxt Minimal Starter
+=======
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# My Fullstack Learning App - YegnaLearn
 
-## Setup
+A modern courses platform with user auth, AI features, and basic TTS support.
 
-Make sure to install dependencies:
+---
+
+## **Tech Stack**
+
+- **Frontend:** Nuxt 3, Custom CSS
+- **Backend:** NestJS, Railway-deployed
+- **Database/Auth:** Supabase
+- **AI / TTS:** OpenAI API + Browser SpeechSynthesis API
+- **Testing:** Jest (unit tests), Playwright (e2e tests)
+
+---
+
+## **Setup Instructions**
+
+### **Local Development**
+
+1. Clone the repo:
 
 ```bash
-# npm
+git clone <repo-url>
+cd frontend   # for Nuxt
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
+Backend:
 
-# pnpm
-pnpm dev
+bash
+Copy code
+cd backend
+npm install
+npm run start:dev
+Environment variables (create .env in root of each):
 
-# yarn
-yarn dev
+bash
+Copy code
+# Backend (.env)
+OPENAI_API_KEY=<your-openai-key>
+SUPABASE_URL=<your-supabase-url>
+SUPABASE_KEY=<your-supabase-key>
 
-# bun
-bun run dev
+# Frontend (.env)
+Deployment
+Frontend: Vercel → connect repo, set root to frontend/, add env NUXT_PUBLIC_BACKEND_URL=https://<your-railway-backend-url>
+
+Backend: Railway → connect repo, root backend/, build: npm run build, start: npm run start:prod, add env vars (OPENAI_API_KEY, SUPABASE_URL, SUPABASE_KEY)
+
+High-level Architecture
+scss
+Copy code
+Frontend (Nuxt3, Browser)
+        │
+        ▼
+Backend (NestJS API, Railway)
+        │
+        ▼
+Supabase (DB & Auth) + OpenAI (AI features)
+Frontend requests → Backend → Supabase/OpenAI → Backend → Frontend renders
+
+TTS: Uses browser SpeechSynthesis API directly from frontend
+
+TTS Example
+Put this in any frontend component where you want to trigger speech (e.g., dashboard.vue or course page):
+
+js
+Copy code
+const speak = (text) => {
+  if (!text) return
+  speechSynthesis.cancel() // stop previous
+  const utterance = new SpeechSynthesisUtterance(text)
+  utterance.rate = 1
+  utterance.pitch = 1
+  utterance.lang = 'en-US'
+  speechSynthesis.speak(utterance)
+}
+Usage in template:
+
+html
+Copy code
+<button @click="speak('Hello World!')">Speak</button>
+Testing
+Unit tests: npm run test in backend (Jest)
+
+E2E tests: npx playwright test
+>>>>>>> e4049bf112c12ae3ef0244d35b28ffb7aaf84caa
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
