@@ -60,7 +60,7 @@ const login = async () => {
 }
 watch(user, (newUser) => {
   if (newUser) {
-    navigateTo('/dashboard')
+    navigateTo('/')
   }
 })
 

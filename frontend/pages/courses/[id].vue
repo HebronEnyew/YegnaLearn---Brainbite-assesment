@@ -25,6 +25,13 @@
     <!-- Main content -->
     <main class="main-content" v-if="selectedSection">
       <h1>{{ selectedSection.title }}</h1>
+      <button
+        class="tts-btn"
+        @click="speak(selectedSection.content_md)"
+      >
+        🔊 Listen to this lesson
+      </button>
+
       <p v-html="selectedSection.content_md"></p>
       <img v-if="selectedSection.image_url" :src="selectedSection.image_url" />
       <div>
@@ -178,6 +185,20 @@ watch(() => route.params.id, async () => {
 const selectSection = (section) => {
   selectedSection.value = section
 }
+//TTS
+const speak = (text) => {
+  if (!text) return
+
+  // Stop any previous speech
+  speechSynthesis.cancel()
+
+  const utterance = new SpeechSynthesisUtterance(text)
+  utterance.rate = 1
+  utterance.pitch = 1
+  utterance.lang = 'en-US'
+
+  speechSynthesis.speak(utterance)
+}
 
 const goBack = () => {
   navigateTo('/dashboard')
@@ -276,6 +297,21 @@ iframe.video-frame {
   font-size: 1.2rem;
   color: #777;
 }
+
+.tts-btn {
+  background: #7b4df3;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  width: fit-content;
+}
+.tts-btn:hover {
+  background: #693ed1;
+}
+
 
 /* Responsive */
 @media(max-width: 992px) {

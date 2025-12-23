@@ -1,0 +1,57 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - navigation [ref=e4]:
+      - generic [ref=e5]:
+        - link "📚 YegnaLearn" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]: 📚
+          - generic [ref=e8]: YegnaLearn
+        - generic [ref=e9]:
+          - link "Courses" [ref=e10] [cursor=pointer]:
+            - /url: /dashboard
+          - link "How It Works" [ref=e11] [cursor=pointer]:
+            - /url: "#how-it-works"
+          - link "Benefits" [ref=e12] [cursor=pointer]:
+            - /url: "#benefits"
+          - link "Testimonials" [ref=e13] [cursor=pointer]:
+            - /url: "#testimonials"
+        - generic [ref=e14]:
+          - link "Login" [ref=e15] [cursor=pointer]:
+            - /url: /login
+          - link "Sign Up" [ref=e16] [cursor=pointer]:
+            - /url: /signup
+    - contentinfo [ref=e17]:
+      - paragraph [ref=e19]: © 2025 YegnaLearn. All rights reserved.
+    - main [ref=e20]:
+      - alert [ref=e21]
+      - generic [ref=e23]:
+        - heading "Welcome Back" [level=1] [ref=e24]
+        - paragraph [ref=e25]: Sign in to access your courses
+        - textbox "Email" [active] [ref=e26]: hebo@g
+        - textbox "Password" [ref=e27]
+        - button "Login" [ref=e28] [cursor=pointer]
+        - paragraph
+        - paragraph [ref=e29]:
+          - text: Don't have an account?
+          - link "Sign Up" [ref=e30] [cursor=pointer]:
+            - /url: /signup
+  - generic:
+    - img
+  - generic:
+    - generic:
+      - generic:
+        - button "Go to parent" [disabled]
+        - button "Open in editor"
+        - button "Close"
+  - generic [ref=e31]:
+    - button "Toggle Nuxt DevTools" [ref=e32] [cursor=pointer]:
+      - img [ref=e33]
+    - generic "Page load time" [ref=e36]:
+      - generic [ref=e37]: "236"
+      - generic [ref=e38]: ms
+    - button "Toggle Component Inspector" [ref=e40] [cursor=pointer]:
+      - img [ref=e41]
+```
